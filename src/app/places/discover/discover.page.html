@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>discover</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-segment (ionChange)="onFilterUpdate($event)">
+    <ion-segment-button value="all" checked>Tous les sites</ion-segment-button>
+    <ion-segment-button value="bookable">Sites reservés</ion-segment-button>
+  </ion-segment>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+               {{loadedPlace[0].title}}
+            </ion-card-title>
+            <ion-card-subtitle>
+              {{loadedPlace[0].price}}
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-img [src]="loadedPlace[0].imageUrl"></ion-img>
+          <ion-card-content>
+            {{loadedPlace[0].description}}
+          </ion-card-content>
+          <div>
+            <ion-button fill="clear" color="primary" [routerLink]="['/','places','tabs','discover','loadedPlaces[0].id']">
+             Plus d'info
+            </ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-virtual-scroll [items]="listedLoadedPlaces" approxFooterHeight="70px">
+          <ion-item [routerLink]="['/','places','tabs','discover',places.id] " detail *virtualItem="let places">
+            <ion-thumbnail slot="start">
+              <ion-img  [src]="places.imageUrl"></ion-img>
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{places.title}}</h2>
+              <p>{{places.description}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-virtual-scroll>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

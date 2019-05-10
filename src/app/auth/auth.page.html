@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>Connexion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <br><br>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">
+              Email
+            </ion-label>
+            <ion-input type="email" ngModel name="email" email required #emailCtrl = "ngModel"></ion-input>
+            <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none">
+              <ion-label>Veuillez entrer un email valide</ion-label>
+            </ion-item>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">
+              Mot de Passe
+            </ion-label>
+            <ion-input type="password" ngModel name="password"  required minlength="8" password #passCtrl="ngModel"></ion-input>
+            <ion-item *ngIf="!passCtrl.valid && passCtrl.touched" lines="none">
+              <ion-label>Mot de passe incorrect</ion-label>
+            </ion-item>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col size-md="6" offset-md="3">
+
+        <ion-button type="submit" color="primary" fill="outline" shape="round" expand="full" (click)="login()" [disabled]="!f.valid">
+          connexion
+        </ion-button>
+        <ion-button type="button" fill="clear" color="primary" text-lowercase text-center (click)="onRegister()">
+          Vous avez pas de compte?  inscrivez-vous
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+  </form>
+
+</ion-content>
