@@ -7,6 +7,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-button color="primary" fill="outline" shape="round" margin  (click)="onBook()"> Reservation </ion-button>
+<ion-content >
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3" no-padding>
+        <ion-img [src]="place.imageUrl"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3" text-center padding>
+        <p>{{place.description}}</p>
+        <p>Prix :{{place.price}}</p>
+        <p>Contact: {{place.phone}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3" text-center *ngIf="isBookable">
+        <ion-button color="primary" fill="outline" shape="round" margin  (click)="onBook()"> Reservation </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

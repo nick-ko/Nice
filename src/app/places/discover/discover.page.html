@@ -12,24 +12,31 @@
     <ion-segment-button value="all" checked>Tous les sites</ion-segment-button>
     <ion-segment-button value="bookable">Sites reservés</ion-segment-button>
   </ion-segment>
-  <ion-grid>
+  <ion-grid *ngIf="!relevantPlace || relevantPlace.length <= 0">
+    <ion-row>
+      <ion-col text-center>
+        <p>Vous avez aucun site en reservation</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="relevantPlace.length>0">
     <ion-row>
       <ion-col text-center>
         <ion-card>
           <ion-card-header>
             <ion-card-title>
-               {{loadedPlace[0].title}}
+               {{relevantPlace[0].title}}
             </ion-card-title>
             <ion-card-subtitle>
-              {{loadedPlace[0].price}}
+              {{relevantPlace[0].price}}
             </ion-card-subtitle>
           </ion-card-header>
-          <ion-img [src]="loadedPlace[0].imageUrl"></ion-img>
+          <ion-img [src]="relevantPlace[0].imageUrl"></ion-img>
           <ion-card-content>
-            {{loadedPlace[0].description}}
+            {{relevantPlace[0].description}}
           </ion-card-content>
           <div>
-            <ion-button fill="clear" color="primary" [routerLink]="['/','places','tabs','discover','loadedPlaces[0].id']">
+            <ion-button fill="clear" color="primary" [routerLink]="['/','places','tabs','discover',relevantPlace[0].id]">
              Plus d'info
             </ion-button>
           </div>

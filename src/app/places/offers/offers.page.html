@@ -18,7 +18,7 @@
   <ion-row>
     <ion-col>
       <ion-list>
-        <ion-item-sliding *ngFor="let places of loadedPlace" #slidingItem>
+        <ion-item-sliding *ngFor="let places of offers" #slidingItem>
           <ion-item [routerLink]="['/','places','tabs','offers',places.id] ">
             <ion-thumbnail slot="start">
               <ion-img  [src]="places.imageUrl"></ion-img>

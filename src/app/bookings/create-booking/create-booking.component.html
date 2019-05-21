@@ -10,5 +10,67 @@
 </ion-header>
 
 <ion-content text-center padding>
-   <p>{{selectedPlace.description}}</p>
+  <form (ngSubmit)="onBookPlace()" #f="ngForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item size-sm="6" offset-sm="3">
+            <ion-label position="floating">Votre Nom</ion-label>
+            <ion-input type="text" autocomplete autocorrect required name="first-name" ngModel ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item size-sm="6" offset-sm="3">
+            <ion-label position="floating">Votre Prenom</ion-label>
+            <ion-input type="text" autocomplete autocorrect required name="last-name" ngModel ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item size-sm="6" offset-sm="3">
+            <ion-label position="floating">Nombre de Personne</ion-label>
+            <ion-input name="guess-number" type="number" ngModel required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item size-sm="3" offset-sm="3">
+            <ion-label position="floating">Date debut visite</ion-label>
+            <ion-datetime
+                    displayFormat="DD MMM YYYY"
+                    pickerFormat="DD MMM YYYY"
+                    name="date-from"
+                    [min]="selectedPlace.availableFrom"
+                    [max]="selectedPlace.availableTo" #stardDate [ngModel]="startDate">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item size-sm="3" offset-sm="3">
+            <ion-label position="floating">Date fin visite</ion-label>
+            <ion-datetime
+                    displayFormat="DD MMM YYYY"
+                    pickerFormat="DD MMM YYYY"
+                    name="date-to" [min]="stardDate.value"
+                    [max]="selectedPlace.availableTo"
+                    [ngModel]="endDate">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-button
+            color="primary"
+            type="submit"
+            fill="outline"
+            shape="round"
+            expand="full"
+            [disabled]="!f.valid">Reserver
+    </ion-button>
+  </form>
+
 </ion-content>
